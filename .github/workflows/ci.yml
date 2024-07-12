@@ -1,0 +1,57 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Dependencies
+        run: cargo check --release --all-targets --locked --verbose
+
+      - name: Check typos
+        uses: crate-ci/typos@master
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check --verbose
+
+      - name: Run linter
+        run: cargo clippy -- -D warnings
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: -v --max-concurrency 1 *.md
+          fail: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tests
+        run: cargo test --verbose
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: cargo build --release --verbose
