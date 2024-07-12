@@ -1,6 +1,15 @@
 [package]
 name = "sym-calc"
 version = "0.1.0"
+description = "A simple symbolic calculator written in Rust"
+authors = ["Rodney Osodo <socials@rodneyosodo.com>"]
 edition = "2021"
+license = "MIT"
+homepage = "https://github.com/0x6flab/sym-calc"
+repository = "https://github.com/0x6flab/sym-calc"
+documentation = "https://github.com/0x6flab/sym-calc"
+keywords = ["math", "calculator", "symbolic", "cli"]
+categories = ["command-line-utilities", "scienc", "mathematics"]
+readme = "README.md"
 
 [dependencies]
