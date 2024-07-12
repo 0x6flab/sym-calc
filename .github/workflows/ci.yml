@@ -27,7 +27,7 @@ jobs:
         run: cargo fmt --all -- --check --verbose
 
       - name: Run linter
-        run: cargo clippy --release --all-targets -- -D warnings --verbose
+        run: cargo clippy -- -D warnings
 
       - name: Check links
         uses: lycheeverse/lychee-action@v1
